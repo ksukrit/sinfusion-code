@@ -41,8 +41,7 @@ def train_image_diffusion(cfg):
 
     tb_logger = pl.loggers.TensorBoardLogger("lightning_logs/", name=cfg.image_name, version=cfg.run_name)
     trainer = pl.Trainer(max_steps=training_steps,
-                         gpus=1, auto_select_gpus=True,
-                         logger=tb_logger, log_every_n_steps=10,
+                         accelerator="auto", logger=tb_logger, log_every_n_steps=10,
                          callbacks=model_callbacks)
 
     # Train model
